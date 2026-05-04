@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments :: head('Añadir reserva')"></head>
+
+<body class="bg-slate-50 font-sans text-gray-800 min-h-screen flex flex-col">
+    <div th:replace="fragments/fragments :: header"></div>
+    <main class="grow max-w-2xl mx-auto px-4 py-8 w-full">
+        <div th:replace="fragments/fragments :: messages(${infoMensaje}, ${errores})"></div>
+
+        <section class="bg-white shadow-md rounded-lg p-6">
+            <h3 class="text-2xl font-bold text-blue-800 mb-6 border-b pb-2">Añadir Reserva al Viaje <span th:text="${codViaje}" class="text-gray-500"></span></h3>
+
+            <form action="/viaje/reserva/add" method="post" class="space-y-4">
+                <div>
+                    <label for="usuario" class="block text-sm font-medium text-gray-700 mb-1">Nombre de Usuario:</label>
+                    <input name="usuario" id="usuario" type="text" required 
+                           class="w-full border border-gray-300 rounded-md px-3 py-2" />
+                </div>
+                <div>
+                    <label for="plazasSolicitadas" class="block text-sm font-medium text-gray-700 mb-1">Plazas solicitadas:</label>
+                    <input name="plazasSolicitadas" id="plazasSolicitadas" type="number" min="1" required 
+                           class="w-full border border-gray-300 rounded-md px-3 py-2" />
+                </div>
+                
+                <input type="hidden" th:value="${codViaje}" name="codViaje">
+
+                <div class="flex items-center gap-4 pt-4">
+                    <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors font-bold shadow-sm">
+                        Añadir Reserva
+                    </button>
+                    <a href="/" class="text-gray-600 hover:text-gray-800 hover:underline transition-colors font-medium">
+                        Cancelar
+                    </a>
+                </div>
+            </form>
+        </section>
+    </main>
+    <footer th:replace="fragments/fragments :: footer"></footer>
+</body>
+</html>

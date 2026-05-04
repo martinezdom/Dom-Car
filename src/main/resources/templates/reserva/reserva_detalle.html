@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/fragments :: head('Detalle de la reserva')"></head>
+
+<body class="bg-slate-50 font-sans text-gray-800 min-h-screen flex flex-col">
+    <div th:replace="fragments/fragments :: header"></div>
+    <main class="grow max-w-2xl mx-auto px-4 py-8 w-full">
+        <div th:replace="fragments/fragments :: messages(${infoMensaje}, ${errores})"></div>
+
+        <section class="bg-white shadow-md rounded-lg p-6 mb-8">
+            <h3 class="text-2xl font-bold text-blue-800 mb-6 border-b pb-2">
+                Reserva <span class="text-gray-500 font-mono text-lg" th:text="${reserva.getCodigoReserva()}"></span>
+            </h3>
+            
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-500">Usuario</label>
+                    <p class="text-lg font-semibold text-gray-800" th:text="${reserva.getUsuario()}"></p>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-500">Plazas solicitadas</label>
+                    <p class="text-lg font-semibold text-gray-800" th:text="${reserva.getPlazasSolicitadas()}"></p>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-500">Viaje asociado (ID)</label>
+                    <p class="text-lg font-semibold text-blue-600">
+                        <a th:href="@{/viaje(codViaje=${reserva.getViaje().getCodViaje()})}" th:text="${reserva.getViaje().getCodViaje()}" class="hover:underline"></a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="flex justify-start">
+            <a th:href="@{/viaje/reservas(codViaje=${reserva.getViaje().getCodViaje()})}" 
+               class="bg-gray-200 text-gray-800 px-6 py-2 rounded-md hover:bg-gray-300 transition-colors font-medium">
+                Volver al listado de reservas
+            </a>
+        </div>
+    </main>
+    <footer th:replace="fragments/fragments :: footer"></footer>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head th:replace="fragments/fragments :: head('Detalle del viaje')"></head>
+
+<body class="bg-slate-50 font-sans text-gray-800 min-h-screen flex flex-col">
+    <div th:replace="fragments/fragments :: header"></div>
+    <main class="grow max-w-4xl mx-auto px-4 py-8 w-full">
+        <div th:replace="fragments/fragments :: messages(${infoMensaje}, ${errores})"></div>
+
+        <section class="bg-white shadow-md rounded-lg p-6 mb-8">
+            <h3 class="text-2xl font-bold text-blue-800 mb-6 border-b pb-2">Detalle del Viaje</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <p><strong class="text-gray-600">Código:</strong> <span th:text="${viaje.codViaje}" class="font-semibold"></span></p>
+                <p><strong class="text-gray-600">Ruta:</strong> <span th:text="${viaje.ruta}" class="font-semibold text-blue-600"></span></p>
+                <p><strong class="text-gray-600">Propietario:</strong> <span th:text="${viaje.propietario}"></span></p>
+                <p><strong class="text-gray-600">Fecha de Salida:</strong> <span
+                        th:text="${#temporals.format(viaje.fechaSalida, 'dd-MM-yyyy HH:mm')}"></span></p>
+                <p><strong class="text-gray-600">Duración:</strong> <span th:text="${viaje.duracion} + ' minutos'"></span></p>
+                <p><strong class="text-gray-600">Precio:</strong> <span th:text="${viaje.precio} + ' €'" class="text-green-600 font-bold"></span></p>
+                <p><strong class="text-gray-600">Plazas Ofertadas:</strong> <span th:text="${viaje.plazasOfertadas}"></span></p>
+                <p><strong class="text-gray-600">Estado:</strong> 
+                    <span th:text="${viaje.estado}" 
+                          class="px-2 py-1 rounded text-xs font-semibold"
+                          th:classappend="${#strings.toString(viaje.estado) == 'ABIERTO' ? 'bg-green-100 text-green-800' : (#strings.toString(viaje.estado) == 'CANCELADO' ? 'bg-red-100 text-red-800' : 'bg-gray-100 text-gray-800')}">
+                    </span>
+                </p>
+            </div>
+        </section>
+
+        <section th:if="${reservas.size() > 0}" class="bg-white shadow-md rounded-lg p-6 mb-8">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">Reservas asociadas</h3>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-gray-50 border-b">
+                            <th class="p-3 text-sm font-semibold text-gray-600">Código Reserva</th>
+                            <th class="p-3 text-sm font-semibold text-gray-600">Usuario</th>
+                            <th class="p-3 text-sm font-semibold text-gray-600 text-center">Plazas</th>
+                            <th class="p-3 text-sm font-semibold text-gray-600">Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="reserva : ${reservas}" class="border-b hover:bg-gray-50 transition-colors">
+                            <td th:text="${reserva.codigoReserva}" class="p-3 text-sm text-gray-700 font-mono"></td>
+                            <td th:text="${reserva.usuario}" class="p-3 text-sm text-gray-700"></td>
+                            <td th:text="${reserva.plazasSolicitadas}" class="p-3 text-sm text-gray-700 text-center"></td>
+                            <td th:text="${#temporals.format(reserva.fechaRealizacion, 'dd-MM-yyyy HH:mm')}" class="p-3 text-sm text-gray-700"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section th:if="${reservas.size() == 0}" class="bg-gray-100 p-4 rounded text-center text-gray-500 mb-8">
+            <p>No hay reservas para este viaje.</p>
+        </section>
+
+        <div class="flex justify-start">
+            <a href="/" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-md hover:bg-gray-300 transition-colors font-medium">
+                Volver al listado
+            </a>
+        </div>
+    </main>
+    <footer th:replace="fragments/fragments :: footer"></footer>
+</body>
+
+</html>

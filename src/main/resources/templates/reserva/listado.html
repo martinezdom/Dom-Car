@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments :: head('Listado de reservas')"></head>
+
+<body class="bg-slate-50 font-sans text-gray-800 min-h-screen flex flex-col">
+  <div th:replace="fragments/fragments :: header"></div>
+  <main class="grow max-w-5xl mx-auto px-4 py-8 w-full">
+    <h3 class="text-2xl font-bold text-blue-800 mb-6">Listado de Reservas - Viaje <span th:text="${codViaje}" class="text-gray-600"></span></h3>
+
+    <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+      <table class="w-full text-center border-collapse">
+        <thead>
+          <tr class="bg-blue-100 text-blue-900 border-b">
+            <th class="p-3 text-sm font-semibold">Cod. Reserva</th>
+            <th class="p-3 text-sm font-semibold">Usuario</th>
+            <th class="p-3 text-sm font-semibold">Plazas Solicitadas</th>
+            <th class="p-3 text-sm font-semibold">Fecha de Reserva</th>
+            <th class="p-3 text-sm font-semibold">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="reserva: ${reservas}" class="border-b hover:bg-slate-50 transition-colors">
+            <td th:text="${reserva.getCodigoReserva()}" class="p-3 text-sm text-gray-700 font-mono"></td>
+            <td th:text="${reserva.getUsuario()}" class="p-3 text-sm text-gray-700"></td>
+            <td th:text="${reserva.getPlazasSolicitadas()}" class="p-3 text-sm text-gray-700 font-bold"></td>
+            <td th:text="${#temporals.format(reserva.getFechaRealizacion(), 'dd-MM-yyyy ''a las'' HH:mm')}" class="p-3 text-sm text-gray-700"></td>
+            <td class="p-3 text-sm">
+              <a th:href="@{/viaje/reserva(codReserva=${reserva.getCodigoReserva()})}" class="text-blue-600 hover:underline font-medium">Ver Detalle</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-8 flex justify-start">
+      <a href="/" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-md hover:bg-gray-300 transition-colors font-medium">
+        Volver al listado de viajes
+      </a>
+    </div>
+  </main>
+  <footer th:replace="fragments/fragments :: footer"></footer>
+</body>
+</html>

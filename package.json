@@ -1,0 +1,26 @@
+{
+  "name": "domcar",
+  "version": "1.0.0",
+  "description": "<a href=\"https://github.com/martinezdom/DomCar\"><img src=\"https://github.com/martinezdom/DomCar/blob/main/src/main/resources/static/images/banner.png?raw=true\" alt=\"DomCar banner\" /></a>",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/main/resources/static/css/input.css -o ./src/main/resources/static/css/style.css",
+    "watch:css": "tailwindcss -i ./src/main/resources/static/css/input.css -o ./src/main/resources/static/css/style.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martinezdom/DomCar.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/martinezdom/DomCar/issues"
+  },
+  "homepage": "https://github.com/martinezdom/DomCar#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.2.4",
+    "tailwindcss": "^4.2.4"
+  }
+}

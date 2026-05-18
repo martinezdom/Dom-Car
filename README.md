@@ -19,8 +19,6 @@
 
 El proyecto destaca por su arquitectura **MVC**, persistencia robusta con JDBC, protección contra errores comunes de lógica y una interfaz moderna *Mobile First* implementada con Tailwind CSS.
 
-> ⚠️ **Nota del Autor**
-> 
 > Este fue mi **primer proyecto serio como estudiante de programación**. Aunque ha sido remodelado y mejorado en algunos aspectos, no ha sido completamente refactorizado con los conocimientos que tengo actualmente. De haber tenido más experiencia en ese momento, muchas decisiones de arquitectura y patrones de código habrían sido diferentes. Es un proyecto que refleja mi crecimiento como desarrollador, pero hay que tener en cuenta que una reescritura desde cero aplicando mejores prácticas, sería mucho más conveniente. Lo comparto como referencia de aprendizaje y de lo que he aprendido que como un proyecto "serio".
 
 ## ✨ Características Principales
